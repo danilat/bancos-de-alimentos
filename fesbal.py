@@ -22,14 +22,14 @@ def bank(br, href):
 	else:
 		phones.append("")
 
-	return [full_address.encode('utf8'), phones[0].encode('utf8')]
+	return [full_address.encode('utf8'), phones[0].encode('utf8'), 'Oficial']
 
 
 br = mechanize.Browser()
 urls = ["http://www.bancodealimentos.es/bancos/fesbal/directorio",
 		"http://www.bancodealimentos.es/bancos/fesbal/directorio?start=20",
 		"http://www.bancodealimentos.es/bancos/fesbal/directorio?start=40"]
-banks = [['full_address', 'phone']]
+banks = [['full_address', 'phone', 'type']]
 
 for url in urls:
 	resp = br.open(url)
