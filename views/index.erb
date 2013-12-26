@@ -1,0 +1,89 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de bancos de alimentos</title>
+
+    
+    <meta name="description" content="" />
+    
+    <meta name="author" content="Dani Latorre" />
+
+    <link rel="stylesheet" href="foundation.css" />
+</head>
+<body>
+  <div class="row">
+    <div class="large-12 columns">
+      <h1><a href="/"><small>Mapa de</small> Bancos de Alimentos</a></h1>
+      <hr />
+      <%if params[:ok] == 'ok'%>
+      <div data-alert class="alert-box success radius">
+      	Gracias por tu sugerencia. Se revisará y mostrará en el mapa lo antes posible.
+      </div>
+      <%end%>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="large-9 columns" role="content">
+        <p>En total hay <%=data['total_rows']%> Bancos de Alimentos publicados</p>
+        <iframe width='100%' height='520' frameborder='0' src='http://danilat.cartodb.com/viz/4cbc0c36-6cbd-11e3-b29b-5404a6a69006/embed_map?title=true&description=true&search=true&shareable=false&cartodb_logo=true&layer_selector=false&legends=true&scrollwheel=true&sublayer_options=1&sql=&zoom=3&center_lat=36.77409249464195&center_lon=3.779296875'></iframe>
+        <br>
+      <a href="" id="list_link" style="display:none">Ver los Bancos de Alimentos en un listado</a>
+      <ul id="list">
+        <%for row in data['rows']%>
+        <li><%= row['full_address']%> - <%= row['contact']%></li>
+        <%end%>
+      </ul>
+    </div>
+    <aside class="large-3 columns">
+      <div class="panel">
+        <h5>Sugiere más</h5>
+        <br/>
+        <form method="POST" action="create">
+			<label>Población:</label> <input type="text" name="place" placeholder="Población"> <br/>
+			<label>Dirección:</label> <input type="text" name="address" placeholder="Dirección"> <br/>
+			<label>Teléfono o email de contacto:</label> <input type="text" name="contact" placeholder="Contacto"><br/>
+			<input type="submit" value="Sugerir" class="button alert radius">
+		</form>
+		<p>¿Conoces algún banco de alimentos que no esté en el mapa?</p> <p>Sugiérelo en el formulario</p>
+      </div>
+ 
+    </aside>
+  </div>
+
+  <div class="row">
+  	<div class="large-12 columns">
+  		<h3>¿Porqué este mapa?</h3>
+  		<p>
+  			Últimamente viendo las noticias, charlando con amigos o simplemente paseando por la calle vemos que estamos en tiempos jodidos. Mucho desempleo, personas deshauciadas, leyes que suenan a otros tiempos, corrupción... en fin, que os voy a contar que no sepáis.
+  		</p>
+  		<p>
+  			El tema es que a raíz de <a href="http://www.youtube.com/watch?v=XtifWROoeqk" target="blank">la noticia del desalojo del Banco de Alimentos Ciutat Meridiana</a>, estuve buscando más información sobre dónde hay Bancos de Alimentos. Con la única suerte que el directorio del <a href="http://www.bancodealimentos.es/bancos/fesbal/directorio" target="blank">el directorio la Federación Española de Bancos de Alimentos</a>, que son los <em>oficiales</em>, pero al parecer existen muchos <em>autogestionados</em> y no están unificados en una web que se pueda consultar para colaborar o hacer uso de esos Bancos de Alimentos. 
+  		</p>
+  		<p>Pues bien, extraje los datos de ese directorio y añadí algún banco autogestionado que encontré.</p>
+  	</div>
+  </div>
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <p>Este es un pequeño proyecto personal de <a href="http://www.danilat.com">Dani Latorre</a> utilizando <a href="https://cartodb.com/">CartoDB</a>, el código está disponible en GitHub</p>
+    </div>
+  </footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#list').hide();
+    $('#list_link').show();
+    $('#list_link').on('click', function(){
+      $('#list').toggle();
+      return false;
+    });
+  });
+  </script>
+</body>
+</html>
