@@ -20,15 +20,20 @@
       <div data-alert class="alert-box success radius">
       	Gracias por tu sugerencia. Se revisará y mostrará en el mapa lo antes posible.
       </div>
+      <%elsif params[:ok] == 'no'%>
+        <div data-alert class="alert-box alert radius">
+          No se ha guardado. Los campos población y dirección son obligatorios.
+        </div>
       <%end%>
     </div>
   </div>
  
   <div class="row">
     <div class="large-9 columns" role="content">
-        <p>En total hay <%=data['total_rows']%> Bancos de Alimentos publicados</p>
+        
         <iframe width='100%' height='520' frameborder='0' src='http://danilat.cartodb.com/viz/4cbc0c36-6cbd-11e3-b29b-5404a6a69006/embed_map?title=true&description=true&search=true&shareable=false&cartodb_logo=true&layer_selector=false&legends=true&scrollwheel=true&sublayer_options=1&sql=&zoom=3&center_lat=36.77409249464195&center_lon=3.779296875'></iframe>
         <br>
+      <p>En total hay <%=data['total_rows']%> Bancos de Alimentos publicados</p>
       <a href="" id="list_link" style="display:none">Ver los Bancos de Alimentos en un listado</a>
       <ul id="list">
         <%for row in data['rows']%>
@@ -41,10 +46,10 @@
         <h5>Sugiere más</h5>
         <br/>
         <form method="POST" action="create">
-			<label>Población:</label> <input type="text" name="place" placeholder="Población"> <br/>
-			<label>Dirección:</label> <input type="text" name="address" placeholder="Dirección"> <br/>
+			<label>Población:</label> <input type="text" name="place" placeholder="Población" required="required"> <br/>
+			<label>Dirección:</label> <input type="text" name="address" placeholder="Dirección" required="required"> <br/>
 			<label>Teléfono o email de contacto:</label> <input type="text" name="contact" placeholder="Contacto"><br/>
-			<input type="submit" value="Sugerir" class="button alert radius">
+			<input type="submit" value="Sugerir" class="button alert radius large-12">
 		</form>
 		<p>¿Conoces algún banco de alimentos que no esté en el mapa?</p> <p>Sugiérelo en el formulario</p>
       </div>
