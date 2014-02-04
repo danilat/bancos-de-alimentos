@@ -1,3 +1,3 @@
-require File.expand_path './web', __FILE__
+require './web'
 
 run Sinatra::Application
