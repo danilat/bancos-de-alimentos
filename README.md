@@ -13,7 +13,7 @@ Y acceder directamente a los datos en http://danilat.cartodb.com/tables/bancosde
            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
                    Version 2, December 2004 
 
-Copyright (C) 2006 Alex Brem <alex@0xab.cd>
+Copyright (C) 2014 Dani Latorre <dani@0danilat.com>
 Everyone is permitted to copy and distribute verbatim or modified 
 copies of this license document, and changing it is allowed as long 
 as the name is changed. 
